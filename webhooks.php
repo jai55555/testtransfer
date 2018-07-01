@@ -14,16 +14,18 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		$text = $event['message']['type'] .$event['message']['id'];
+		$text = $event['message']['id'];
 		$mysqltext = '';
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-		      	$text = $text . $event['message']['text'];
+		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว";
 			$mysqltext = $event['message']['text'];
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-			$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
+			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว";
+			$mysqltext = "Image";
+			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
 		
@@ -34,9 +36,11 @@ if (!is_null($events['events'])) {
 	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','";
 		   $query = $query.$event['message']['type']."','".$mysqltext."','');";
 	        
-		$text = $text.$query;
+		//$text = $text.$query;
 	        $result = mysqli_query($con, $query);
 	
+		
+		
 		
 			// Get text sent
 			//$text = $event['source']['userId'];
