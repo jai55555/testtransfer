@@ -14,7 +14,7 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		$text = $event['message']['type'] .'\r\n' . $event['message']['id'] . '\r\n';
+		$text = $event['message']['type'] .$event['message']['id'];
 		$mysqltext = ''"
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -23,14 +23,14 @@ if (!is_null($events['events'])) {
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-			$text = $text . 'https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
+			$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
 		
-	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
-	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','".$event['message']['type']."','".$mysqltext."','')";";
+	        //$con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
+	        //$query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','".$event['message']['type']."','".$mysqltext."','')";";
 	
-	        $result = mysqli_query($con, $query);
+	        //$result = mysqli_query($con, $query);
 	
 		
 			// Get text sent
