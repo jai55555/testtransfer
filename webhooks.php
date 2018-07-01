@@ -18,8 +18,8 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
-			//$replyToken = $event['replyToken'];
-			$replyToken = 'Helloooooo';
+			$replyToken = $event['replyToken'];
+			//$replyToken = 'Helloooooo';
 
 			// Build message to reply back
 			$messages = [
