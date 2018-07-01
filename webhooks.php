@@ -14,14 +14,14 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		$text = $event['message']['type'] .'\r\n';
+		$text = $event['message']['type'] .'\r\n' . $event['message']['id'] . '\r\n';
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			$text = $text . $event['message']['text'];
 
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-			$text = $text . $event['message']['text'];
+			$text = $text . 'https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 
 		}
 
