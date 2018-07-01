@@ -32,7 +32,8 @@ if (!is_null($events['events'])) {
 		if ($mysqltext != '') { 
 		
 	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
-		$con->set_charset("utf8");
+		//$con->set_charset("utf8");
+		$con->set_charset("tis620");			
 		
 		
 	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','";
