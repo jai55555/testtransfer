@@ -28,7 +28,7 @@ if (!is_null($events['events'])) {
 
 		
 	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
-		$result = mysqli_query($con,"SET NAMES 'utf8';");
+		mysql_set_charset('utf8', $con);
 		
 	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','";
 		   $query = $query.$event['message']['type']."','".$mysqltext."','');";
