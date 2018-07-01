@@ -15,7 +15,7 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		$text = $event['message']['type'] .$event['message']['id'];
-		$mysqltext = ''"
+		$mysqltext = '';
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		      	$text = $text . $event['message']['text'];
