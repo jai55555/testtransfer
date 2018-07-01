@@ -16,16 +16,18 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		$text = $event['message']['id'];
 		$mysqltext = '';
-		
+		$mysqltype = 0
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว";
 			$mysqltext = $event['message']['text'];
+			$mysqltype = 0
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
 			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว";
 			$mysqltext = "Image";
+			$mysqltype = 1
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
@@ -36,8 +38,8 @@ if (!is_null($events['events'])) {
 		//$con->set_charset("tis620");			
 		
 		
-	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','";
-		   $query = $query.$event['message']['type']."','".$mysqltext."','');";
+	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."',";
+		   $query = $query.strval($mysqltype).",'".$mysqltext."','');";
 	        
 		//$text = $text.$query;
 	        $result = mysqli_query($con, $query);
