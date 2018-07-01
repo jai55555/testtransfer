@@ -27,12 +27,12 @@ if (!is_null($events['events'])) {
 		}
 
 		
-	        //$con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
+	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
 	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','";
 		   $query = $query.$event['message']['type']."','".$mysqltext."','');";
 	        
 		$text = $text.$query;
-	        //$result = mysqli_query($con, $query);
+	        $result = mysqli_query($con, $query);
 	
 		
 			// Get text sent
