@@ -17,6 +17,7 @@ if (!is_null($events['events'])) {
 		$text = $event['message']['id'];
 		$mysqltext = '';
 		
+		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว";
 			$mysqltext = $event['message']['text'];
@@ -28,6 +29,7 @@ if (!is_null($events['events'])) {
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
+		if ($mysqltext != '') { 
 		
 	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
 		$con->set_charset("utf8");
@@ -38,8 +40,10 @@ if (!is_null($events['events'])) {
 	        
 		//$text = $text.$query;
 	        $result = mysqli_query($con, $query);
-	
-		
+	    
+		} else {
+		   $text = "ไม่เข้าใจ";
+		}	
 		
 		
 			// Get text sent
