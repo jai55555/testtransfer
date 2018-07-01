@@ -15,17 +15,23 @@ if (!is_null($events['events'])) {
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 		$text = $event['message']['type'] .'\r\n' . $event['message']['id'] . '\r\n';
+		$mysqltext = ''"
+		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-			$text = $text . $event['message']['text'];
-
+		      	$text = $text . $event['message']['text'];
+			$mysqltext = $event['message']['text'];
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
 			$text = $text . 'https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
-
 		}
 
 		
+	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
+	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."','".$event['message']['type']."','".$mysqltext."','')";";
+	
+	        $result = mysqli_query($con, $query);
+	
 		
 			// Get text sent
 			//$text = $event['source']['userId'];
