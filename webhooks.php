@@ -33,7 +33,7 @@ if (!is_null($events['events'])) {
 
 		if ($mysqltext != '') { 
 		
-	        $con = mysqli_connect('remote-mysql3.servage.net', 'transfernote', 'Bkoil001', 'transfernote');
+	        $con = mysqli_connect('27.mysql.servage.net', '1010309_ga44973', 'Bkoil001', '1010309-transfernote ');
 		$con->set_charset("utf8");
 		//$con->set_charset("tis620");			
 		
