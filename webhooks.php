@@ -31,8 +31,8 @@ if (!is_null($events['events'])) {
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
 		
-		        $res = notify_message($str,$token);
-                        print_r($res);
+		        //$res = notify_message($str,$token);
+                        //print_r($res);
 
 		}
 
@@ -51,7 +51,7 @@ if (!is_null($events['events'])) {
 		
 		
 	        //$query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."',";
-		   $query = $query.$mysqltype.",'".$mysqltext."','');";
+		//   $query = $query.$mysqltype.",'".$mysqltext."','');";
 	        
 		//$text = $text.$query;
 	        //$result = mysqli_query($con, $query);
