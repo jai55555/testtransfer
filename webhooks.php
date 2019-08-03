@@ -40,6 +40,8 @@ if (!is_null($events['events'])) {
 			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว";
 			$mysqltext = "Image";
 			$mysqltype = "1";
+			
+			$res = notify_message('https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content',$token);
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
