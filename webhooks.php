@@ -1,5 +1,11 @@
 <?php // callback.php
 
+
+define('LINE_API',"https://notify-api.line.me/api/notify");
+ 
+$token = "Fvt1yyoJCE9x0f8iPgvSBHnxXPKIVi2AY8OX8n9nn7E"; //ใส่Token ที่copy เอาไว้
+
+
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
@@ -18,10 +24,16 @@ if (!is_null($events['events'])) {
 		$mysqltext = '';
 		$mysqltype = "0";
 		
+		
+		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว";
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
+		
+		        $res = notify_message($str,$token);
+                        print_r($res);
+
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
@@ -33,16 +45,16 @@ if (!is_null($events['events'])) {
 
 		if ($mysqltext != '') { 
 		
-	        $con = mysqli_connect('27.mysql.servage.net', '1010309_ga44973', 'Bkoil001', '1010309-transfernote ');
-		$con->set_charset("utf8");
+	        //$con = mysqli_connect('27.mysql.servage.net', '1010309_ga44973', 'Bkoil001', '1010309-transfernote ');
+		//$con->set_charset("utf8");
 		//$con->set_charset("tis620");			
 		
 		
-	        $query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."',";
+	        //$query = "INSERT INTO transfer (f_datetime,f_message_id,f_type,f_text,f_note) VALUES (now(),'".$event['message']['id']."',";
 		   $query = $query.$mysqltype.",'".$mysqltext."','');";
 	        
 		//$text = $text.$query;
-	        $result = mysqli_query($con, $query);
+	        //$result = mysqli_query($con, $query);
 	    
 		} else {
 		   $text = "ไม่เข้าใจ";
@@ -84,3 +96,18 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OOK";
+
+
+
+function notify_message($message,$token){
+ $queryData = array('message' => $message);
+ $queryData = http_build_query($queryData,'','&');
+ $headerOptions = array( 
+         'http'=>array(
+            'method'=>'POST',
+            'header'=> "Content-Type: application/x-www-form-urlencoded\r\n"
+                      ."Authorization: Bearer ".$token."\r\n"
+                      ."Content-Length: ".strlen($queryData)."\r\n",
+            'content' => $queryData
+         ),
+ );
