@@ -98,7 +98,6 @@ if (!is_null($events['events'])) {
 echo "OOK";
 
 
-
 function notify_message($message,$token){
  $queryData = array('message' => $message);
  $queryData = http_build_query($queryData,'','&');
@@ -111,3 +110,8 @@ function notify_message($message,$token){
             'content' => $queryData
          ),
  );
+ $context = stream_context_create($headerOptions);
+ $result = file_get_contents(LINE_API,FALSE,$context);
+ $res = json_decode($result);
+ return $res;
+}   
