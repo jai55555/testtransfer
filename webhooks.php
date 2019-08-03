@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
 		
-		        $res = notify_message("testtest",$token);
+		        $res = notify_message($mysqltext,$token);
                         //print_r($res);
 
 		}
