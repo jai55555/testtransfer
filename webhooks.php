@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
 		
-		        $res = notify_message($mysqltext,$token);
+		        $res = notify_message($mysqltext."\n".$event['source']['userId'],$token);
                         //print_r($res);
 
 		}
@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
 			$mysqltext = "Image";
 			$mysqltype = "1";
 			
-			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content'."\r\n".'http://leemotorsales.com/line/getpicture.php?url='.$event['message']['id'],$token);
+			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content'."\r\n".'http://leemotorsales.com/line/getpicture.php?url='.$event['message']['id']."\n".$event['source']['userId'],$token);
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
