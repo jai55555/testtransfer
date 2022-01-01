@@ -41,7 +41,7 @@ if (!is_null($events['events'])) {
 			$mysqltext = "Image";
 			$mysqltype = "1";
 			
-			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content',$token);
+			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content\n\nhttps://leemotorsales.com/line/getpictures.php?url='.$event['message']['id'],$token);
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
