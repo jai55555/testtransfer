@@ -27,7 +27,7 @@ if (!is_null($events['events'])) {
 		
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...";
+		      	$text = "ได้รับข้อความ".$event['message']['text']."เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...\n".$text;
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
 		
@@ -37,11 +37,11 @@ if (!is_null($events['events'])) {
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...";
+			$text = "ได้รับรูปภาพ"."เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...\n".$text;
 			$mysqltext = "Image";
 			$mysqltype = "1";
 			
-			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content'."\r\n".'http://leemotorsales.com/line/getpicture.php?url='.$event['message']['id']."\n".$event['source']['userId'],$token);
+			$res = notify_message('https://api-data.line.me/v2/bot/message/'.$event['message']['id'].'/content'."\n\n".'http://leemotorsales.com/line/getpicture.php?url='.$event['message']['id']."\n".$event['source']['userId'],$token);
 			//$text = $text . ' https://api.line.me/v2/bot/message/'.$event['message']['id'].'/content';
 		}
 
