@@ -27,7 +27,7 @@ if (!is_null($events['events'])) {
 		
 		
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว";
+		      	$text = "ได้รับข้อความ".$text . $event['message']['text']."เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...";
 			$mysqltext = $event['message']['text'];
 			$mysqltype = "0";
 		
@@ -37,7 +37,7 @@ if (!is_null($events['events'])) {
 		}
 
 		if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว";
+			$text = "ได้รับรูปภาพ". $text . "เรียบร้อยแล้ว อย่าลืมแจ้งชื่อลูกค้าด้วย...";
 			$mysqltext = "Image";
 			$mysqltype = "1";
 			
